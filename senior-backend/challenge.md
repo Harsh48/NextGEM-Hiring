@@ -25,7 +25,7 @@ This is the $GEMAI ERC20 contract: 0xFBE44caE91d7Df8382208fCdc1fE80E40FBc7e9a - 
 3.  Once the transaction is saved, emit a new socket.io event to all sockets that says "new_swap" and provide the ObjectID of the document that just got created inside the socket.io event.
 
 ## The Events Server
-1.   This script will create a scoket.io client directly with the scraper server and connect to the same database the scraper server is using
+1.   This script will create a socket.io client directly with the scraper server and connect to the same database the scraper server is using
 2.   When a new_swap event is received, grab the ObjectId from the event and look for the document in the transactions collection with that id. console.log the all the fields.
 3.   Expose one endpoint: GET /swaps.
    -  The swaps endpoint is paginated (include page and limit params)
