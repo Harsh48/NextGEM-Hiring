@@ -1,7 +1,7 @@
 # Technical Test - Senior Frontend
-Welcome to the technical test for the Senior Backend position at NextGem!
+Welcome to the technical test for the Senior Frontend position at NextGem!
 
-In this test, you will have the opportunity to demonstrate your skills and knowledge in backend development. Please read the instructions and requirements carefully before you begin.
+In this test, you will have the opportunity to demonstrate your skills and knowledge in frontend development. Please read the instructions and requirements carefully before you begin.
 
 Remember, this test is designed to evaluate your skills and experience. We recommend following development best practices and maintaining clean, well-structured code.
 
