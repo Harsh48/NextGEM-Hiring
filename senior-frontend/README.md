@@ -25,6 +25,11 @@ Good luck! We look forward to seeing your talent in action!
     - Typescript
     - Vite
     - ReactJS
+    - SCSS
+    - Web3JS (not included in the test but you will be asked to provide prrojects where youve used this in the past)
+    - Figma or equivalent
+
+- You should be able to create a design from nothing. DO NOT use Figma templates (we can tell)
 
 If you have any questions or need clarification, feel free to contact us - we're here to help!
 
