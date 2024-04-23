@@ -8,7 +8,7 @@ Redesign the front page for https://thenextgem.ai
 - Include the link to the figma you created for the frontpage in your repo
 - IMPORTANT: Create a new design language for the front page and use it consistently throught your code. Do not re-use components from our current website, be creative!
 - The most important things are that the page looks good, is responsive on mobile and desktop devices and that YOU ARE CREATIVE! Feel free to use whatever color scheme you want, whatever font you want, etc. You have
-- full creative control.
+  full creative control.
 
 - If you choose to use our existing fonts, we are using: Nippo and Outfit
 
