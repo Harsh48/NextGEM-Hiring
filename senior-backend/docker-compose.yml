@@ -1,25 +1,27 @@
 services:
   events:
-    build:
-      context: .
-      dockerfile: ./apps/events/Dockerfile
+    build: './apps/events'
     command: npm start
+    depends_on:
+      - db
     env_file:
       - ./apps/events/.env
-    volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
+    environment:
+      - DB_URL=mongodb://db/microservices  
     ports:
       - '3001:3001'
   scraper:
-    build:
-      context: .
-      dockerfile: ./apps/scraper/Dockerfile
+    build: './apps/scraper'
     command: npm start
     env_file:
       - ./apps/scraper/.env
     ports:
       - '3005:3005'
-    volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
+    depends_on:
+      - db
+    environment:
+      - DB_URL=mongodb://db/microservices
+  db:
+   image: mongo
+   ports: 
+    - '2710:2710'
