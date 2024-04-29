@@ -1,0 +1,25 @@
+services:
+  events:
+    build:
+      context: .
+      dockerfile: ./apps/events/Dockerfile
+    command: npm start
+    env_file:
+      - ./apps/events/.env
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - '3001:3001'
+  scraper:
+    build:
+      context: .
+      dockerfile: ./apps/scraper/Dockerfile
+    command: npm start
+    env_file:
+      - ./apps/scraper/.env
+    ports:
+      - '3005:3005'
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
