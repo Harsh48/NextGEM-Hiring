@@ -1,8 +1,8 @@
-FROM node:alpine As development
+FROM node:18-alpine
 
-WORKDIR /usr/src/app
+WORKDIR /src
 
-COPY package.json ./
+COPY package*.json ./
 
 RUN npm install
 
