@@ -1,4 +1,3 @@
-const mongoose = require('mongoose');
 const connectDB = require('./config/db')
 const Transaction= require('./models/transaction.model')
 const socketIO = require('socket.io');
@@ -18,10 +17,6 @@ const UNISWAP_V3_ROUTER = process.env.UNISWAP_V3_ROUTER
 connectDB();
 
 async function main(){
-// const io = new SocketIO();
-//   io.on('connection', (socket) => {
-//     console.log('Socket connected');
-//   });
 const io = socketIO(app);
 
 io.on('connection', (socket) => {
@@ -30,14 +25,8 @@ io.on('connection', (socket) => {
 
   const provider = new ethers.JsonRpcProvider(INFURA_URL);
   const contract = new ethers.Contract(GEMAI_CONTRACT_ADDRESS,[commonABI], provider);
-  
-  const latestBlock = await provider.getBlockNumber();
-  const fromBlock = latestBlock - 1000;
-  const filter = contract.filters.Transfer(null,'0x3AfBAE812F3C29b5926504250888415a01aaC57f', null); // Listen for transfers to Uniswap V3 Router
-  console.log(JSON.stringify(filter))
-  const data = await contract.queryFilter(filter, fromBlock, latestBlock)
-  console.log(data)
- 
+
+  const filter = contract.filters.Transfer(null,UNISWAP_V3_ROUTER, null); // Listen for transfers to Uniswap V3 Router
   
 
   const listener = async (event) => {
@@ -54,8 +43,6 @@ io.on('connection', (socket) => {
     const valueUsd = formatValue*gemaiPriceEth*wethPriceUsd;
     const valueWeth = formatValue*gemaiPriceEth;
      
-    console.log({gemaiPriceEth})
-    console.log(formatValue*gemaiPriceEth)
 
 
     console.log(`New ${type} swap detected!`);
@@ -75,7 +62,10 @@ io.on('connection', (socket) => {
       io.emit('new_swap', newTransaction._id);
   };
 
-  listener(data[0])
+  contract.on(filter, listener)
+    .then(() => {
+      console.log('Listening for transfers from block');
+    })
 }
 main()
 
