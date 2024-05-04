@@ -18,7 +18,7 @@ function handleError(res, status, message) {
 
 // Function to connect to the Scraper Server's socket.io endpoint
 function connectToServer() {
-  const socket = socketIOClient('http://localhost:3005'); // Replace with Scraper Server URL
+  const socket = socketIOClient(process.env.SOCKET_URL);  
 
   socket.on('connect', () => console.log('Connected to Scraper Server'));
 

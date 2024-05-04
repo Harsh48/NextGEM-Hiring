@@ -18,10 +18,12 @@ connectDB();
 
 async function main(){
 const io = socketIO(app);
-
-io.on('connection', (socket) => {
-  console.log('Client connected to socket.io');
-});
+ 
+  io.on('connection', (socket) => {
+    console.log('Client connected to socket.io');
+  });
+ 
+ 
 
   const provider = new ethers.JsonRpcProvider(INFURA_URL);
   const contract = new ethers.Contract(GEMAI_CONTRACT_ADDRESS,[commonABI], provider);
@@ -69,6 +71,7 @@ io.on('connection', (socket) => {
   });
 
   console.log('Listening for transfer events on GEMAI contract...');
+   
 }
 main()
 
