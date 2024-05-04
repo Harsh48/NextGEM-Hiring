@@ -49,7 +49,7 @@ io.on('connection', (socket) => {
     console.log(`New ${type} swap detected!`);
       const newTransaction = new Transaction({
         type,
-        txid: event.transactionHash,
+        txid: event.log.transactionHash,
         value_usd: valueUsd,
         value_weth: valueWeth,
         value_gemai: formatValue,
