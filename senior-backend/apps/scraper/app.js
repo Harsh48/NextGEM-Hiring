@@ -30,7 +30,8 @@ io.on('connection', (socket) => {
   
 
   const listener = async (event) => {
-    console.log('New transfer event:', event.transactionHash);
+    console.log(event, event.args, event.log)
+    console.log('New transfer event:', event.log.transactionHash);
     const { from, to, value } = event.args;
     const isBuy = from !== UNISWAP_V3_ROUTER;
     const type = isBuy ? 'buy' : 'sell';
@@ -62,10 +63,12 @@ io.on('connection', (socket) => {
       io.emit('new_swap', newTransaction._id);
   };
 
-  contract.on(filter, listener)
-    .then(() => {
-      console.log('Listening for transfers from block');
-    })
+  contract.on(filter, async (event) => {
+    console.log('Transfer event detected:', event);
+    await listener(event);
+  });
+
+  console.log('Listening for transfer events on GEMAI contract...');
 }
 main()
 
