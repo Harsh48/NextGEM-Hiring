@@ -1,0 +1,29 @@
+services:
+  events:
+    build: './apps/events'
+    command: npm start
+    depends_on:
+      - db
+      - scraper
+    env_file:
+      - ./apps/events/.env
+    environment:
+      - DB_URL=mongodb://db/microservices  
+      - SOCKET_URL=http://scraper:3005
+    ports:
+      - '3001:3001'
+  scraper:
+    build: './apps/scraper'
+    command: npm start
+    env_file:
+      - ./apps/scraper/.env
+    ports:
+      - '3005:3005'
+    depends_on:
+      - db
+    environment:
+      - DB_URL=mongodb://db/microservices
+  db:
+   image: mongo
+   ports: 
+    - '2710:2710'
